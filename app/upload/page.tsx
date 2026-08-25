@@ -16,7 +16,21 @@ export default function UploadPage() {
     setFileName(file.name);
 
     try {
-    setText("PDF successfully selected.");
+    const formData = new FormData();
+    formData.append("file", file);
+    const response = await fetch(
+        "/api/extract-pdf",
+        {
+            method: "POST",
+            body: formData,
+        }
+    )
+
+    console.log("Response status:", response.status);
+
+    const data = await response.json();
+    
+    setText(JSON.stringify(data, null, 2));
 
 } catch (error) {
   console.error("PDF Extraction Error:", error);
