@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { extractTextFromPdf } from "@/lib/pdf";
 
 export default function UploadPage() {
   const [fileName, setFileName] = useState("");
@@ -17,10 +16,8 @@ export default function UploadPage() {
     setFileName(file.name);
 
     try {
-  const extractedText =
-    await extractTextFromPdf(file);
+    setText("PDF successfully selected.");
 
-  setText(extractedText);
 } catch (error) {
   console.error("PDF Extraction Error:", error);
 
